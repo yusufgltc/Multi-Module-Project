@@ -8,6 +8,9 @@ object Dependencies {
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.compose}"
+    const val composeUiManifest = "androidx.compose.ui:ui-test-manifest"
+    const val composeMaterial3 = "androidx.compose.material3:material3"
+    const val composeActivity = "androidx.activity:activity-compose:${Versions.composeActivity}"
 
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
@@ -22,6 +25,11 @@ object Dependencies {
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+
+    const val junit = "junit:junit:${Versions.junit}"
+    const val junitAndroid = "androidx.test.ext:junit:${Versions.junitAndroid}"
+    const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val junitUi = "androidx.compose.ui:ui-test-junit4"
 }
 
 fun DependencyHandler.room() {
@@ -44,6 +52,9 @@ fun DependencyHandler.compose() {
     implementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeMaterial)
     debugImplementation(Dependencies.composeUiToolingPreview)
+    debugImplementation(Dependencies.composeUiManifest)
+    implementation(Dependencies.composeMaterial3)
+    implementation(Dependencies.composeActivity)
 }
 
 fun DependencyHandler.hilt() {
@@ -57,4 +68,11 @@ fun DependencyHandler.booksDataSource() {
 
 fun DependencyHandler.booksUi() {
     implementation(project(":books-ui"))
+}
+
+fun DependencyHandler.test() {
+    testImplementation(Dependencies.junit)
+    androidTestImplementation(Dependencies.junitAndroid)
+    androidTestImplementation(Dependencies.espresso)
+    androidTestImplementation(Dependencies.junitUi)
 }
